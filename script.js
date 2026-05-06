@@ -48,7 +48,6 @@ function displayQuestion() {
     }
 }
 
-
 function checkAnswer(selectedIndex) {
     // check if the selected index is equal to the correct index
     const question = quizData[currentQuestion];
@@ -56,21 +55,19 @@ function checkAnswer(selectedIndex) {
         // alert('Correct!');
         score +=1;
         choiceButtons[selectedIndex].classList.add('correct');
+
     } else {
         // alert('Wrong!');
         choiceButtons[selectedIndex].classList.add('wrong');
         choiceButtons[question.correct].classList.add('correct');
     }
-    setTimeout(function () {
-        // reset all the buttons
-        for (let b of choiceButtons) {
-            b.classList.remove('correct', 'wrong');
-        }
+         setTimeout(function () {
+         // reset all the buttons
+         for (let b of choiceButtons) {
+             b.classList.remove('correct', 'wrong');
+         }
         nextQuestion();
-
-    }, 1500);
-    
-    nextQuestion();
+    }, 3000);
 }
 
 function nextQuestion() {
