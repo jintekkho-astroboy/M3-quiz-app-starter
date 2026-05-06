@@ -1,0 +1,75 @@
+// quiz.js
+const questionEl = document.querySelector('#question');
+const choicesEl = document.querySelector('#choices');
+
+const question = {
+    question: 'What is the capital of France?',
+    choices: ['New York', 'London', 'Paris', 'Dublin'],
+    correct: 2
+}
+
+let currentQuestion = 0;
+let score = 0;
+// quizData array replaces single question object
+const quizData = [
+    {
+        question: "What is the capital of France?",
+        correct: 0,
+        choices: ["Paris", "London", "Berlin", "Madrid"]
+    },
+    {
+        question: "Which planet is known as the Red Planet?",
+        correct: 2,
+        choices: ["Venus", "Jupiter", "Mars", "Saturn"]
+    }
+];
+
+// setup  all the choice buttons
+const choiceButtons = document.querySelectorAll('.choice-btn');
+
+for (let i = 0; i < choiceButtons.length; i++) {
+    // Add click event listener to each button
+
+    choiceButtons[i].addEventListener('click', function () {
+    // send the index of the button clicked to checkAnswer function
+    checkAnswer(i);
+    });
+}
+
+function displayQuestion() {
+
+    // get the current question object
+    const question = quizData[currentQuestion];
+    questionEl.innerHTML = question.question;
+
+    // replace each choice button with the choices from the question object
+    for (let i = 0; i < question.choices.length; i++) {
+        choicesEl.children[i].innerHTML = question.choices[i];
+    }
+}
+
+
+function checkAnswer(selectedIndex) {
+    // check if the selected index is equal to the correct index
+    const question = quizData[currentQuestion];
+    if (selectedIndex === question.correct) {
+        alert('Correct!');
+        score +=1;
+    } else {
+        alert('Wrong!');
+    }
+    nextQuestion();
+}
+
+function nextQuestion() {
+    // increment the currentQuestion variable
+    currentQuestion++;
+    // check if the currentQuestion is less than the length of the quizData array
+    if (currentQuestion < quizData.length) {
+        displayQuestion();
+    } else {
+        alert('Quiz Over!');
+    }
+}
+
+displayQuestion();
