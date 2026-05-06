@@ -55,6 +55,7 @@ function checkAnswer(selectedIndex) {
     if (selectedIndex === question.correct) {
         alert('Correct!');
         score +=1;
+        choiceButtons[selectedIndex].classList.add('correct');
     } else {
         alert('Wrong!');
     }
