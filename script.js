@@ -53,12 +53,23 @@ function checkAnswer(selectedIndex) {
     // check if the selected index is equal to the correct index
     const question = quizData[currentQuestion];
     if (selectedIndex === question.correct) {
-        alert('Correct!');
+        // alert('Correct!');
         score +=1;
         choiceButtons[selectedIndex].classList.add('correct');
     } else {
-        alert('Wrong!');
+        // alert('Wrong!');
+        choiceButtons[selectedIndex].classList.add('wrong');
+        choiceButtons[question.correct].classList.add('correct');
     }
+    setTimeout(function () {
+        // reset all the buttons
+        for (let b of choiceButtons) {
+            b.classList.remove('correct', 'wrong');
+        }
+        nextQuestion();
+
+    }, 1500);
+    
     nextQuestion();
 }
 
